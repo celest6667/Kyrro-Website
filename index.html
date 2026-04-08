@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kyrro — Studio d'automatisation & d'IA appliquée · Lille</title>
+  <meta name="description" content="Kyrro est un studio basé à Lille qui automatise les process et intègre l'IA dans les outils internes des entreprises. Vision business, design soigné, technologie utile.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="loading">
+
+  <!-- ═══════════════════════════════════════
+       LOADER
+  ═══════════════════════════════════════ -->
+  <div class="loader" id="loader">
+    <div class="loader-inner">
+      <div class="loader-wordmark">
+        <span class="lw-1">K</span>
+        <span class="lw-2">y</span>
+        <span class="lw-3">r</span>
+        <span class="lw-4">r</span>
+        <span class="lw-5">o</span>
+      </div>
+      <p class="loader-tag">Studio · Automatisation &amp; IA · Lille</p>
+    </div>
+    <div class="loader-progress">
+      <div class="lp-bar"><div class="lp-fill"></div></div>
+      <span class="lp-num"></span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       CURSOR
+  ═══════════════════════════════════════ -->
+  <div id="cur">
+    <div class="cur-dot"></div>
+    <div class="cur-ring"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       NAV
+  ═══════════════════════════════════════ -->
+  <nav id="nav">
+    <a href="#" class="nav-logo">Kyrro</a>
+    <div class="nav-center">
+      <a href="#manifesto" class="nav-link">Vision</a>
+      <a href="#piliers" class="nav-link">Approche</a>
+      <a href="#offres" class="nav-link">Offres</a>
+      <a href="#process" class="nav-link">Méthode</a>
+      <a href="#real" class="nav-link">Réalisations</a>
+    </div>
+    <a href="#contact" class="nav-cta">Démarrer →</a>
+  </nav>
+
+  <!-- ═══════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-orb"></div>
+
+    <div class="hero-number">Kyrro</div>
+
+    <div class="hero-content">
+      <div class="hero-kicker">Studio · Automatisation &amp; IA</div>
+      <h1 class="hero-title">
+        <span class="line l1"><span class="line-inner">Comprendre.</span></span>
+        <span class="line l2"><span class="line-inner">Concevoir.</span></span>
+        <span class="line l3"><span class="line-inner accent">Automatiser.</span></span>
+      </h1>
+    </div>
+
+    <div class="hero-strip">
+      <div class="strip-item">
+        <div class="strip-tool">Vision</div>
+        <div class="strip-desc">Business avant tout</div>
+      </div>
+      <div class="strip-item">
+        <div class="strip-tool">Design</div>
+        <div class="strip-desc">UX soignée, utile</div>
+      </div>
+      <div class="strip-item">
+        <div class="strip-tool">Automatisation</div>
+        <div class="strip-desc">Process intelligents</div>
+      </div>
+      <div class="strip-item">
+        <div class="strip-tool">IA appliquée</div>
+        <div class="strip-desc">Là où elle compte</div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       RUBAN DÉFILANT
+  ═══════════════════════════════════════ -->
+  <div class="ribbon">
+    <div class="ribbon-inner">
+      <span class="ribbon-text">Automatisation</span><span class="ribbon-sep">✦</span>
+      <span class="ribbon-text">IA appliquée</span><span class="ribbon-sep">✦</span>
+      <span class="ribbon-text">Workflows sur-mesure</span><span class="ribbon-sep">✦</span>
+      <span class="ribbon-text">Outils internes</span><span class="ribbon-sep">✦</span>
+      <span class="ribbon-text">Vision business</span><span class="ribbon-sep">✦</span>
+      <span class="ribbon-text">Design &amp; UX</span><span class="ribbon-sep">✦</span>
+      <span class="ribbon-text">Process intelligents</span><span class="ribbon-sep">✦</span>
+      <span class="ribbon-text">Audit &amp; conseil</span><span class="ribbon-sep">✦</span>
+      <span class="ribbon-text">Intégrations</span><span class="ribbon-sep">✦</span>
+      <span class="ribbon-text">Gain de temps</span><span class="ribbon-sep">✦</span>
+
+      <!-- Doublon pour le défilement infini -->
+      <span class="ribbon-text">Automatisation</span><span class="ribbon-sep">✦</span>
+      <span class="ribbon-text">IA appliquée</span><span class="ribbon-sep">✦</span>
+      <span class="ribbon-text">Workflows sur-mesure</span><span class="ribbon-sep">✦</span>
+      <span class="ribbon-text">Outils internes</span><span class="ribbon-sep">✦</span>
+      <span class="ribbon-text">Vision business</span><span class="ribbon-sep">✦</span>
+      <span class="ribbon-text">Design &amp; UX</span><span class="ribbon-sep">✦</span>
+      <span class="ribbon-text">Process intelligents</span><span class="ribbon-sep">✦</span>
+      <span class="ribbon-text">Audit &amp; conseil</span><span class="ribbon-sep">✦</span>
+      <span class="ribbon-text">Intégrations</span><span class="ribbon-sep">✦</span>
+      <span class="ribbon-text">Gain de temps</span><span class="ribbon-sep">✦</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       MANIFESTO
+  ═══════════════════════════════════════ -->
+  <section class="manifesto" id="manifesto">
+    <span class="manifesto-num">01 — Vision</span>
+    <span class="manifesto-label">Notre manifesto</span>
+
+    <h1 class="manifesto-h1 rv">
+      Votre temps vaut mieux<br>
+      que des tâches <em>répétitives</em>.
+    </h1>
+    <h2 class="manifesto-h2 rv d1">
+      On automatise vos process et on y intègre <span class="highlight">l'IA</span>,
+      là où elle change vraiment <span class="highlight">la donne</span>.
+    </h2>
+
+    <div class="manifesto-wave">
+      <svg viewBox="0 0 900 200" width="900" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path class="wave w1" d="M0 80L18.8 85.5C37.7 91 75.3 102 112.8 101.5C150.3 101 187.7 89 225.2 87.2C262.7 85.3 300.3 93.7 337.8 99C375.3 104.3 412.7 106.7 450.2 107.3C487.7 108 525.3 107 562.8 101.2C600.3 95.3 637.7 84.7 675.2 78.8C712.7 73 750.3 72 787.8 79.3C825.3 86.7 862.7 102.3 881.3 110.2L900 118L900 200L0 200Z" fill="#ff6b6b"/>
+        <path class="wave w2" d="M0 93L18.8 93.2C37.7 93.3 75.3 93.7 112.8 101.7C150.3 109.7 187.7 125.3 225.2 130.5C262.7 135.7 300.3 130.3 337.8 120C375.3 109.7 412.7 94.3 450.2 96.3C487.7 98.3 525.3 117.7 562.8 124.5C600.3 131.3 637.7 125.7 675.2 125.8C712.7 126 750.3 132 787.8 131.5C825.3 131 862.7 124 881.3 120.5L900 117L900 200L0 200Z" fill="#fa6464"/>
+        <path class="wave w3" d="M0 116L18.8 120.7C37.7 125.3 75.3 134.7 112.8 138.3C150.3 142 187.7 140 225.2 137.3C262.7 134.7 300.3 131.3 337.8 133.8C375.3 136.3 412.7 144.7 450.2 149C487.7 153.3 525.3 153.7 562.8 149C600.3 144.3 637.7 134.7 675.2 135.3C712.7 136 750.3 147 787.8 148.2C825.3 149.3 862.7 140.7 881.3 136.3L900 132L900 200L0 200Z" fill="#f55d5c"/>
+        <path class="wave w4" d="M0 144L18.8 139C37.7 134 75.3 124 112.8 125C150.3 126 187.7 138 225.2 134.7C262.7 131.3 300.3 112.7 337.8 113.3C375.3 114 412.7 134 450.2 144C487.7 154 525.3 154 562.8 154C600.3 154 637.7 154 675.2 147.5C712.7 141 750.3 128 787.8 121.8C825.3 115.7 862.7 116.3 881.3 116.7L900 117L900 200L0 200Z" fill="#f05655"/>
+        <path class="wave w5" d="M0 139L18.8 136.2C37.7 133.3 75.3 127.7 112.8 129.3C150.3 131 187.7 140 225.2 141.5C262.7 143 300.3 137 337.8 138.2C375.3 139.3 412.7 147.7 450.2 151.2C487.7 154.7 525.3 153.3 562.8 146.5C600.3 139.7 637.7 127.3 675.2 121.5C712.7 115.7 750.3 116.3 787.8 122C825.3 127.7 862.7 138.3 881.3 143.7L900 149L900 200L0 200Z" fill="#eb4f4e"/>
+        <path class="wave w6" d="M0 169L18.8 167.3C37.7 165.7 75.3 162.3 112.8 160C150.3 157.7 187.7 156.3 225.2 154C262.7 151.7 300.3 148.3 337.8 150C375.3 151.7 412.7 158.3 450.2 163.3C487.7 168.3 525.3 171.7 562.8 166.8C600.3 162 637.7 149 675.2 144.8C712.7 140.7 750.3 145.3 787.8 149.7C825.3 154 862.7 158 881.3 160L900 162L900 200L0 200Z" fill="#e54847"/>
+        <path class="wave w7" d="M0 158L18.8 163.5C37.7 169 75.3 180 112.8 183.2C150.3 186.3 187.7 181.7 225.2 179.7C262.7 177.7 300.3 178.3 337.8 175.3C375.3 172.3 412.7 165.7 450.2 166C487.7 166.3 525.3 173.7 562.8 175.8C600.3 178 637.7 175 675.2 171.5C712.7 168 750.3 164 787.8 162.5C825.3 161 862.7 162 881.3 162.5L900 163L900 200L0 200Z" fill="#e04040"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       3 PILIERS
+  ═══════════════════════════════════════ -->
+  <section class="piliers" id="piliers">
+    <div class="section-header">
+      <div>
+        <div class="section-tag">02 — Approche</div>
+        <h2 class="section-title rv">Trois piliers,<br>une seule promesse.</h2>
+      </div>
+      <p class="section-sub rv d2">Ce qui fait qu'un outil sert vraiment, c'est la rencontre entre le métier, le design et la technologie.</p>
+    </div>
+
+    <div class="piliers-grid">
+
+      <div class="pilier-card pc-1 rv">
+        <div class="pc-num">01</div>
+        <div class="pc-icon">◐</div>
+        <h3 class="pc-title">Vision business</h3>
+        <p class="pc-accroche">On comprend votre métier avant de toucher à un outil.</p>
+        <p class="pc-desc">Avant de proposer la moindre solution, on prend le temps de comprendre comment vous travaillez, ce qui vous fait perdre du temps, et où se cachent les vrais leviers. Parce qu'un outil mal pensé, même avec la meilleure technologie, ne sert à rien.</p>
+      </div>
+
+      <div class="pilier-card pc-2 rv d2">
+        <div class="pc-num">02</div>
+        <div class="pc-icon">◑</div>
+        <h3 class="pc-title">Design &amp; UX</h3>
+        <p class="pc-accroche">Vos outils méritent autant d'attention que votre site vitrine.</p>
+        <p class="pc-desc">Chaque interface qu'on livre est pensée comme un produit fini : claire, agréable, et conçue pour ceux qui s'en servent au quotidien.</p>
+      </div>
+
+      <div class="pilier-card pc-3 rv d3">
+        <div class="pc-num">03</div>
+        <div class="pc-icon">◉</div>
+        <h3 class="pc-title">IA &amp; Automatisation</h3>
+        <p class="pc-accroche">On automatise vos tâches répétitives, et on intègre l'IA là où elle fait la différence.</p>
+        <p class="pc-desc">On identifie les tâches qui vous coûtent du temps chaque semaine, et on construit les workflows qui les prennent en charge à votre place. L'IA intervient là où elle apporte une vraie valeur : trier, résumer, générer, analyser.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       OFFRES (5 cartes)
+  ═══════════════════════════════════════ -->
+  <section class="offres" id="offres">
+    <div class="section-header">
+      <div>
+        <div class="section-tag">03 — Offres</div>
+        <h2 class="section-title rv">Ce qu'on construit<br>pour vous.</h2>
+      </div>
+      <p class="section-sub rv d2">De l'audit aux outils internes les plus complexes, on choisit toujours la solution la plus adaptée à votre réalité.</p>
+    </div>
+
+    <div class="offres-grid">
+
+      <div class="offre-card oc-1 rv">
+        <div>
+          <div class="oc-num">01</div>
+          <h3 class="oc-title">Outils internes<br>sur-mesure</h3>
+          <p class="oc-desc">CRM, back-office, portails clients, dashboards… On conçoit les outils qui vous manquent pour piloter votre activité au quotidien, taillés exactement à votre façon de travailler.</p>
+          <div class="oc-tools">
+            <span class="oc-tool">CRM</span>
+            <span class="oc-tool">Back-office</span>
+            <span class="oc-tool">Portail client</span>
+            <span class="oc-tool">Dashboards</span>
+          </div>
+        </div>
+        <div class="oc-arrow">→</div>
+      </div>
+
+      <div class="offre-card oc-2 rv d1">
+        <div>
+          <div class="oc-num">02</div>
+          <h3 class="oc-title">Automatisation<br>de process</h3>
+          <p class="oc-desc">On connecte vos outils existants pour qu'ils communiquent entre eux et que les tâches répétitives disparaissent. Devis qui se génèrent tout seuls, données qui se synchronisent, notifications qui partent au bon moment — tout ce qui peut tourner sans vous.</p>
+          <div class="oc-tools">
+            <span class="oc-tool">Synchronisation</span>
+            <span class="oc-tool">Documents</span>
+            <span class="oc-tool">Onboarding</span>
+            <span class="oc-tool">Alertes</span>
+          </div>
+        </div>
+        <div class="oc-arrow">→</div>
+      </div>
+
+      <div class="offre-card oc-3 rv d2">
+        <div>
+          <div class="oc-num">03</div>
+          <h3 class="oc-title">IA appliquée<br>à votre métier</h3>
+          <p class="oc-desc">On intègre l'IA dans vos process et vos outils, là où elle vous fait vraiment gagner du temps : trier des emails, résumer des réunions, qualifier des leads, traiter des documents, générer des contenus. Pas d'IA gadget — de l'IA qui produit un résultat mesurable.</p>
+          <div class="oc-tools">
+            <span class="oc-tool">Tri d'emails</span>
+            <span class="oc-tool">Résumés</span>
+            <span class="oc-tool">Leads</span>
+            <span class="oc-tool">Documents</span>
+          </div>
+        </div>
+        <div class="oc-arrow">→</div>
+      </div>
+
+      <div class="offre-card oc-4 rv d3">
+        <div>
+          <div class="oc-num">04</div>
+          <h3 class="oc-title">Audit<br>&amp; conseil</h3>
+          <p class="oc-desc">Avant de construire quoi que ce soit, on prend le temps d'analyser votre fonctionnement actuel pour identifier où vous perdez du temps, où l'automatisation a du sens, et où l'IA peut vraiment vous aider. Vous repartez avec une feuille de route claire, même si vous ne travaillez pas avec nous ensuite.</p>
+          <div class="oc-tools">
+            <span class="oc-tool">Cartographie</span>
+            <span class="oc-tool">Friction</span>
+            <span class="oc-tool">Recommandations</span>
+            <span class="oc-tool">Roadmap</span>
+          </div>
+        </div>
+        <div class="oc-arrow">→</div>
+      </div>
+
+      <div class="offre-card oc-5 rv d4">
+        <div>
+          <div class="oc-num">05</div>
+          <h3 class="oc-title">Sites<br>&amp; Landings</h3>
+          <p class="oc-desc">Quand vous avez besoin d'un site vitrine ou d'une landing page bien designée et rapide à mettre en ligne, on s'en occupe aussi. Avec le même soin du détail que pour le reste.</p>
+          <div class="oc-tools">
+            <span class="oc-tool">Vitrines</span>
+            <span class="oc-tool">Landings</span>
+            <span class="oc-tool">Refontes</span>
+            <span class="oc-tool">Évolutions</span>
+          </div>
+        </div>
+        <div class="oc-arrow">→</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       PROCESS (3 étapes étoffées)
+  ═══════════════════════════════════════ -->
+  <section class="process" id="process">
+    <div class="process-head">
+      <div>
+        <span class="section-tag" style="display:block;margin-bottom:16px">04 — Méthode</span>
+        <h2 class="section-title rv" style="color:var(--cream)">Trois étapes,<br>un seul fil rouge.</h2>
+      </div>
+      <p class="section-sub rv d2" style="color:rgba(240,235,225,.65)">
+        Une méthode posée, des points de validation réguliers, et un accompagnement qui ne s'arrête pas à la livraison.
+      </p>
+    </div>
+
+    <div class="process-steps">
+
+      <div class="pstep rv">
+        <div class="pstep-num">01</div>
+        <h3 class="pstep-title">Comprendre</h3>
+        <p class="pstep-sub">On apprend à connaître votre business avant tout le reste.</p>
+        <p class="pstep-desc">On commence toujours par un échange approfondi pour comprendre comment vous travaillez, quels sont vos outils existants, et où se trouvent vos vrais points de friction. À la fin de cette phase, on sait exactement ce qu'on va construire — et surtout pourquoi.</p>
+        <div class="pstep-tags">
+          <span>Entretien de cadrage</span>
+          <span>Cartographie</span>
+          <span>Priorités</span>
+        </div>
+      </div>
+
+      <div class="pstep rv d2">
+        <div class="pstep-num">02</div>
+        <h3 class="pstep-title">Concevoir<br>&amp; construire</h3>
+        <p class="pstep-sub">On dessine, on construit, on vous montre.</p>
+        <p class="pstep-desc">On conçoit la solution sur-mesure et on la construit étape par étape, en vous la présentant régulièrement. Vous voyez l'outil prendre forme et vous l'orientez avec nous.</p>
+        <div class="pstep-tags">
+          <span>Design des interfaces</span>
+          <span>Workflows</span>
+          <span>Intégration IA</span>
+          <span>Validations</span>
+        </div>
+      </div>
+
+      <div class="pstep rv d3">
+        <div class="pstep-num">03</div>
+        <h3 class="pstep-title">Accompagner</h3>
+        <p class="pstep-sub">Un projet livré, ce n'est pas un projet terminé.</p>
+        <p class="pstep-desc">Une fois l'outil en production, on reste à vos côtés pour l'ajuster, le faire évoluer et l'enrichir au fil du temps. Vos besoins changent, votre activité grandit, et votre outil doit suivre — sans que vous ayez à tout recommencer à zéro.</p>
+        <div class="pstep-tags">
+          <span>Suivi</span>
+          <span>Évolutions</span>
+          <span>Formation</span>
+          <span>Support</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       RÉALISATIONS (4 cartes — fictives à valider)
+  ═══════════════════════════════════════ -->
+  <section class="real" id="real">
+    <div class="section-header">
+      <div>
+        <div class="section-tag">05 — Réalisations</div>
+        <h2 class="section-title rv">Des projets<br>qui font la différence.</h2>
+      </div>
+    </div>
+
+    <div class="real-track">
+      <div class="rcard rv" data-project="urbans">
+        <span class="rcard-num">01</span>
+        <h3 class="rcard-name">Urban's</h3>
+        <span class="rcard-cta">Voir le projet →</span>
+      </div>
+      <div class="rcard rv d1" data-project="mushin">
+        <span class="rcard-num">02</span>
+        <h3 class="rcard-name">Mushin</h3>
+        <span class="rcard-cta">Voir le projet →</span>
+      </div>
+      <div class="rcard rv d2" data-project="coallis">
+        <span class="rcard-num">03</span>
+        <h3 class="rcard-name">Coallis</h3>
+        <span class="rcard-cta">Voir le projet →</span>
+      </div>
+      <div class="rcard rv d3" data-project="cite-biere">
+        <span class="rcard-num">04</span>
+        <h3 class="rcard-name">Cité de la Bière</h3>
+        <span class="rcard-cta">Voir le projet →</span>
+      </div>
+      <div class="rcard rv d4" data-project="agiras">
+        <span class="rcard-num">05</span>
+        <h3 class="rcard-name">Agiras</h3>
+        <span class="rcard-cta">Voir le projet →</span>
+      </div>
+      <div class="rcard rv d5" data-project="ot-nord">
+        <span class="rcard-num">06</span>
+        <h3 class="rcard-name">OT Nord</h3>
+        <span class="rcard-cta">Voir le projet →</span>
+      </div>
+      <div class="rcard rv" data-project="meelo">
+        <span class="rcard-num">07</span>
+        <h3 class="rcard-name">Meelo</h3>
+        <span class="rcard-cta">Voir le projet →</span>
+      </div>
+      <div class="rcard rv d1" data-project="la-maizon">
+        <span class="rcard-num">08</span>
+        <h3 class="rcard-name">La Maizon</h3>
+        <span class="rcard-cta">Voir le projet →</span>
+      </div>
+      <div class="rcard rv d2" data-project="optia">
+        <span class="rcard-num">09</span>
+        <h3 class="rcard-name">Opt.ia</h3>
+        <span class="rcard-cta">Voir le projet →</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       ÉQUIPE
+  ═══════════════════════════════════════ -->
+  <section class="team" id="team">
+    <div class="section-header">
+      <div>
+        <div class="section-tag">06 — Équipe</div>
+        <h2 class="section-title rv">Les visages<br>derrière Kyrro.</h2>
+      </div>
+    </div>
+
+    <div class="team-row rv d1">
+      <div class="team-member">
+        <img class="team-avatar" src="Images/image-hubert.jpeg" alt="Hubert Borrewater">
+        <div class="team-info">
+          <h3 class="team-name">Hubert Borrewater</h3>
+          <span class="team-role">UX UI Designer</span>
+        </div>
+      </div>
+      <div class="team-member">
+        <img class="team-avatar" src="Images/ Image-clément.jpeg" alt="Clément Piot">
+        <div class="team-info">
+          <h3 class="team-name">Clément Piot</h3>
+          <span class="team-role">Founder & AI Automation Specialist</span>
+        </div>
+      </div>
+      <div class="team-member">
+        <img class="team-avatar" src="Images/célestin photo.png" alt="Célestin Petit">
+        <div class="team-info">
+          <h3 class="team-name">Célestin Petit</h3>
+          <span class="team-role">Web App Developer</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       STACK (version minimisée)
+  ═══════════════════════════════════════ -->
+  <section class="stack" id="stack">
+    <span class="section-tag rv">07 — Outils</span>
+    <h2 class="section-title rv d1">Le bon outil<br>pour le bon problème.</h2>
+    <p class="stack-intro rv d2">Ce qui compte, ce n'est pas la stack, c'est ce qu'on en fait. On choisit toujours les outils les plus adaptés à votre besoin — voici ceux qu'on maîtrise au quotidien.</p>
+
+    <div class="tools-list">
+      <div class="tool-row rv">
+        <img src="Images/make-logo.png" alt="Make" class="tool-logo">
+        <span class="tool-name">Make</span>
+        <span class="tool-desc">Automatisation et orchestration de workflows</span>
+      </div>
+      <div class="tool-row rv d1">
+        <img src="Images/logo-airtable.jpg" alt="Airtable" class="tool-logo">
+        <span class="tool-name">Airtable</span>
+        <span class="tool-desc">Bases de données et gestion de contenus</span>
+      </div>
+      <div class="tool-row rv d2">
+        <img src="Images/logo-softr.png" alt="Softr" class="tool-logo">
+        <span class="tool-name">Softr</span>
+        <span class="tool-desc">Portails clients et apps internes</span>
+      </div>
+      <div class="tool-row rv d3">
+        <img src="Images/logo-xano.avif" alt="Xano" class="tool-logo">
+        <span class="tool-name">Xano</span>
+        <span class="tool-desc">Backend et API sur-mesure</span>
+      </div>
+      <div class="tool-row rv d4">
+        <img src="Images/weweb_io_logo.jpeg" alt="WeWeb" class="tool-logo">
+        <span class="tool-name">WeWeb</span>
+        <span class="tool-desc">Front-end et interfaces avancées</span>
+      </div>
+      <div class="tool-row rv d5">
+        <img src="Images/logo webflow.svg" alt="Webflow" class="tool-logo">
+        <span class="tool-name">Webflow</span>
+        <span class="tool-desc">Sites vitrines et landings</span>
+      </div>
+      <div class="tool-row rv">
+        <img src="Images/logo claude.svg" alt="Claude" class="tool-logo">
+        <span class="tool-name">Claude</span>
+        <span class="tool-desc">IA appliquée et traitement intelligent</span>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       CTA FINAL
+  ═══════════════════════════════════════ -->
+  <section class="cta-section" id="contact">
+    <div class="cta-bg-text">
+      <span>PARLONS DE VOTRE PROJET &nbsp;&nbsp; PARLONS DE VOTRE PROJET &nbsp;&nbsp; PARLONS DE VOTRE PROJET &nbsp;&nbsp;</span>
+      <span>PARLONS DE VOTRE PROJET &nbsp;&nbsp; PARLONS DE VOTRE PROJET &nbsp;&nbsp; PARLONS DE VOTRE PROJET &nbsp;&nbsp;</span>
+    </div>
+    <div class="cta-left rv">
+      <h2 class="cta-title">Le <em>premier pas</em><br>ne coûte rien.</h2>
+      <p class="cta-sub">On prend le temps d'écouter votre besoin avant tout le reste.</p>
+    </div>
+    <div class="cta-right rv d3">
+      <a href="mailto:clement@kyrro.studio" class="cta-btn">
+        Démarrer un projet
+        <span class="arr">→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       PROJECT MODAL
+  ═══════════════════════════════════════ -->
+  <div class="modal" id="projectModal">
+    <div class="modal-backdrop"></div>
+    <div class="modal-panel">
+      <button class="modal-close" aria-label="Fermer">✕</button>
+      <div class="modal-image">
+        <div class="modal-image-placeholder"></div>
+      </div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="modal-num"></span>
+          <h2 class="modal-title"></h2>
+        </div>
+        <div class="modal-body">
+          <div class="modal-col">
+            <h3 class="modal-label">À propos</h3>
+            <p class="modal-desc"></p>
+          </div>
+          <div class="modal-col">
+            <h3 class="modal-label">Services</h3>
+            <div class="modal-tags"></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a href="mailto:clement@kyrro.studio" class="modal-cta">Discuter d'un projet similaire <span>→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════ -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <a href="#" class="footer-logo">Kyrro</a>
+        <p class="footer-tagline">On comprend votre métier, on conçoit vos outils, on automatise vos process.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#manifesto">Vision</a></li>
+          <li><a href="#piliers">Approche</a></li>
+          <li><a href="#offres">Offres</a></li>
+          <li><a href="#process">Méthode</a></li>
+          <li><a href="#real">Réalisations</a></li>
+          <li><a href="#stack">Outils</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Liens</h4>
+        <ul>
+          <li><a href="#" target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p><a href="mailto:clement@kyrro.studio">clement@kyrro.studio</a></p>
+        <p>+33 (0)7 67 77 46 56</p>
+        <p>Hiptown Euratech · 59000 Lille</p>
+      </div>
+    </div>
+    <div class="footer-bot">
+      <p class="footer-copy">© 2025 Kyrro. Tous droits réservés.</p>
+      <div class="footer-soc">
+        <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>

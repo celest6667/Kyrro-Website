@@ -1,0 +1,39 @@
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Node (au cas où on ajouterait un serveur local plus tard)
+node_modules/
+package-lock.json
+
+# Build / cache
+dist/
+build/
+.cache/
+.parcel-cache/
+
+# Env
+.env
+.env.local
+.env.*.local

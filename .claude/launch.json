@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "kyrro",
+      "runtimeExecutable": "/usr/local/bin/node",
+      "runtimeArgs": ["-e", "const h=require('http'),f=require('fs'),p=require('path');h.createServer((q,r)=>{let u=q.url.split('?')[0];if(u==='/')u='/index.html';const fp=p.join('.',u);f.readFile(fp,(e,d)=>{if(e){r.writeHead(404);r.end();return}const ext=p.extname(fp).slice(1);const types={html:'text/html',css:'text/css',js:'application/javascript',png:'image/png',jpg:'image/jpeg',svg:'image/svg+xml'};r.writeHead(200,{'Content-Type':types[ext]||'application/octet-stream','Cache-Control':'no-store'});r.end(d)})}).listen(8080)"],
+      "port": 8080
+    }
+  ]
+}
