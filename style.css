@@ -879,11 +879,14 @@ nav.scrolled .nav-cta {
 .real-track {
   display:flex;
   gap:3px;
-  overflow-x:auto;
+  overflow-x:scroll;
+  overflow-y:hidden;
   scroll-snap-type:x mandatory;
   padding-top:32px;
   padding-right:48px;
   scrollbar-width:none;
+  overscroll-behavior-x:contain;
+  -webkit-overflow-scrolling:touch;
 }
 .real-track::-webkit-scrollbar { display:none; }
 
