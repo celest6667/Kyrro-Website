@@ -112,8 +112,9 @@
   <section class="hero" id="hero">
     <div class="hero-grid"></div>
     <div class="hero-orb"></div>
-
-    <div class="hero-number">Kyrro</div>
+    <div class="hero-brick-wrap">
+      <img class="hero-brick" src="Images/Brique-Kyrro.svg" alt="">
+    </div>
 
     <div class="hero-content">
       <div class="hero-kicker">Studio · Automatisation &amp; IA</div>
@@ -146,7 +147,7 @@
   </section>
 
   <!-- ═══════════════════════════════════════
-       RUBAN DÉFILANT
+       BANDEAU FIXE
   ═══════════════════════════════════════ -->
   <div class="ribbon">
     <div class="ribbon-inner">
@@ -154,24 +155,7 @@
       <span class="ribbon-text">IA appliquée</span><span class="ribbon-sep">✦</span>
       <span class="ribbon-text">Workflows sur-mesure</span><span class="ribbon-sep">✦</span>
       <span class="ribbon-text">Outils internes</span><span class="ribbon-sep">✦</span>
-      <span class="ribbon-text">Vision business</span><span class="ribbon-sep">✦</span>
-      <span class="ribbon-text">Design &amp; UX</span><span class="ribbon-sep">✦</span>
-      <span class="ribbon-text">Process intelligents</span><span class="ribbon-sep">✦</span>
-      <span class="ribbon-text">Audit &amp; conseil</span><span class="ribbon-sep">✦</span>
-      <span class="ribbon-text">Intégrations</span><span class="ribbon-sep">✦</span>
-      <span class="ribbon-text">Gain de temps</span><span class="ribbon-sep">✦</span>
-
-      <!-- Doublon pour le défilement infini -->
-      <span class="ribbon-text">Automatisation</span><span class="ribbon-sep">✦</span>
-      <span class="ribbon-text">IA appliquée</span><span class="ribbon-sep">✦</span>
-      <span class="ribbon-text">Workflows sur-mesure</span><span class="ribbon-sep">✦</span>
-      <span class="ribbon-text">Outils internes</span><span class="ribbon-sep">✦</span>
-      <span class="ribbon-text">Vision business</span><span class="ribbon-sep">✦</span>
-      <span class="ribbon-text">Design &amp; UX</span><span class="ribbon-sep">✦</span>
-      <span class="ribbon-text">Process intelligents</span><span class="ribbon-sep">✦</span>
-      <span class="ribbon-text">Audit &amp; conseil</span><span class="ribbon-sep">✦</span>
-      <span class="ribbon-text">Intégrations</span><span class="ribbon-sep">✦</span>
-      <span class="ribbon-text">Gain de temps</span><span class="ribbon-sep">✦</span>
+      <span class="ribbon-text">Design &amp; UX</span>
     </div>
   </div>
 
@@ -343,7 +327,7 @@
   <section class="process" id="process">
     <div class="process-head">
       <div>
-        <span class="section-tag" style="display:block;margin-bottom:16px">04 — Méthode</span>
+        <span class="section-tag" style="display:block">04 — Méthode</span>
         <h2 class="section-title rv" style="color:var(--cream)">Trois étapes,<br>un seul fil rouge.</h2>
       </div>
       <p class="section-sub rv d2" style="color:rgba(240,235,225,.65)">
@@ -367,7 +351,7 @@
 
       <div class="pstep rv d2">
         <div class="pstep-num">02</div>
-        <h3 class="pstep-title">Concevoir<br>&amp; construire</h3>
+        <h3 class="pstep-title">Concevoir &amp; construire</h3>
         <p class="pstep-sub">On dessine, on construit, on vous montre.</p>
         <p class="pstep-desc">On conçoit la solution sur-mesure et on la construit étape par étape, en vous la présentant régulièrement. Vous voyez l'outil prendre forme et vous l'orientez avec nous.</p>
         <div class="pstep-tags">
@@ -458,6 +442,7 @@
        ÉQUIPE
   ═══════════════════════════════════════ -->
   <section class="team" id="team">
+    <div class="team-grid-bg"></div>
     <div class="section-header">
       <div>
         <div class="section-tag">06 — Équipe</div>
@@ -466,21 +451,21 @@
     </div>
 
     <div class="team-row rv d1">
-      <div class="team-member">
+      <div class="team-member" data-pos="left">
         <img class="team-avatar" src="Images/image-hubert.jpeg" alt="Hubert Borrewater">
         <div class="team-info">
           <h3 class="team-name">Hubert Borrewater</h3>
           <span class="team-role">UX UI Designer</span>
         </div>
       </div>
-      <div class="team-member">
+      <div class="team-member" data-pos="center">
         <img class="team-avatar" src="Images/Image-clément.jpeg" alt="Clément Piot">
         <div class="team-info">
           <h3 class="team-name">Clément Piot</h3>
           <span class="team-role">Founder & AI Automation Specialist</span>
         </div>
       </div>
-      <div class="team-member">
+      <div class="team-member" data-pos="right">
         <img class="team-avatar" src="Images/célestin photo.png" alt="Célestin Petit">
         <div class="team-info">
           <h3 class="team-name">Célestin Petit</h3>
@@ -501,38 +486,59 @@
     <div class="tools-list">
       <div class="tool-row rv">
         <img src="Images/make-logo.png" alt="Make" class="tool-logo">
-        <span class="tool-name">Make</span>
-        <span class="tool-desc">Automatisation et orchestration de workflows</span>
+        <div class="tool-text">
+          <span class="tool-name">Make</span>
+          <span class="tool-desc">Orchestration de workflows</span>
+        </div>
       </div>
       <div class="tool-row rv d1">
         <img src="Images/logo-airtable.jpg" alt="Airtable" class="tool-logo">
-        <span class="tool-name">Airtable</span>
-        <span class="tool-desc">Bases de données et gestion de contenus</span>
+        <div class="tool-text">
+          <span class="tool-name">Airtable</span>
+          <span class="tool-desc">Bases de données et contenus</span>
+        </div>
       </div>
       <div class="tool-row rv d2">
         <img src="Images/logo-softr.png" alt="Softr" class="tool-logo">
-        <span class="tool-name">Softr</span>
-        <span class="tool-desc">Portails clients et apps internes</span>
+        <div class="tool-text">
+          <span class="tool-name">Softr</span>
+          <span class="tool-desc">Portails et apps internes</span>
+        </div>
       </div>
       <div class="tool-row rv d3">
         <img src="Images/logo-xano.avif" alt="Xano" class="tool-logo">
-        <span class="tool-name">Xano</span>
-        <span class="tool-desc">Backend et API sur-mesure</span>
+        <div class="tool-text">
+          <span class="tool-name">Xano</span>
+          <span class="tool-desc">Backend et API sur-mesure</span>
+        </div>
       </div>
       <div class="tool-row rv d4">
         <img src="Images/weweb_io_logo.jpeg" alt="WeWeb" class="tool-logo">
-        <span class="tool-name">WeWeb</span>
-        <span class="tool-desc">Front-end et interfaces avancées</span>
+        <div class="tool-text">
+          <span class="tool-name">WeWeb</span>
+          <span class="tool-desc">Front-end avancé</span>
+        </div>
       </div>
       <div class="tool-row rv d5">
         <img src="Images/logo webflow.svg" alt="Webflow" class="tool-logo">
-        <span class="tool-name">Webflow</span>
-        <span class="tool-desc">Sites vitrines et landings</span>
+        <div class="tool-text">
+          <span class="tool-name">Webflow</span>
+          <span class="tool-desc">Sites vitrines et landings</span>
+        </div>
       </div>
       <div class="tool-row rv">
         <img src="Images/logo claude.svg" alt="Claude" class="tool-logo">
-        <span class="tool-name">Claude</span>
-        <span class="tool-desc">IA appliquée et traitement intelligent</span>
+        <div class="tool-text">
+          <span class="tool-name">Claude</span>
+          <span class="tool-desc">IA appliquée et analyse</span>
+        </div>
+      </div>
+      <div class="tool-row rv d1">
+        <img src="Images/Figma-logo.svg.png" alt="Figma" class="tool-logo">
+        <div class="tool-text">
+          <span class="tool-name">Figma</span>
+          <span class="tool-desc">Design d'interfaces</span>
+        </div>
       </div>
     </div>
 
@@ -625,9 +631,6 @@
     </div>
     <div class="footer-bot">
       <p class="footer-copy">© 2026 Kyrro. Tous droits réservés.</p>
-      <div class="footer-soc">
-        <a href="#" target="_blank" rel="noopener">LinkedIn</a>
-      </div>
     </div>
   </footer>
 

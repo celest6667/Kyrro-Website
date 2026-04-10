@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kyrro — Admin</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'DM Sans', sans-serif; background:#1A1814; color:#F0EBE1; min-height:100vh; }
+
+    /* Login */
+    .login { display:flex; align-items:center; justify-content:center; min-height:100vh; }
+    .login-box { text-align:center; }
+    .login-box h1 { font-size:28px; font-weight:700; margin-bottom:8px; }
+    .login-box p { font-size:14px; color:rgba(240,235,225,.5); margin-bottom:32px; }
+    .login-box input {
+      display:block; width:280px; padding:14px 20px; margin-bottom:12px;
+      background:#2E2B24; border:1px solid rgba(240,235,225,.1); border-radius:8px;
+      color:#F0EBE1; font-size:14px; font-family:inherit; outline:none;
+    }
+    .login-box input:focus { border-color:#FF6B6B; }
+    .login-box button {
+      width:280px; padding:14px; background:#FF6B6B; color:white; border:none;
+      border-radius:8px; font-size:14px; font-weight:700; cursor:pointer; font-family:inherit;
+    }
+    .login-box button:hover { background:#E04040; }
+    .login-error { color:#FF6B6B; font-size:12px; margin-top:8px; display:none; }
+
+    /* Admin */
+    .admin { display:none; }
+    .admin-nav {
+      padding:20px 32px; display:flex; align-items:center; justify-content:space-between;
+      border-bottom:1px solid rgba(240,235,225,.08);
+    }
+    .admin-nav h1 { font-size:20px; font-weight:700; }
+    .admin-nav-right { display:flex; gap:12px; align-items:center; }
+    .admin-nav span { font-size:12px; color:rgba(240,235,225,.4); }
+    .admin-nav button, .btn-back {
+      padding:8px 16px; background:transparent; color:rgba(240,235,225,.4);
+      border:1px solid rgba(240,235,225,.15); border-radius:6px; cursor:pointer;
+      font-size:12px; font-family:inherit; text-decoration:none;
+    }
+    .admin-nav button:hover, .btn-back:hover { color:#FF6B6B; border-color:#FF6B6B; }
+
+    .admin-body { max-width:900px; margin:0 auto; padding:40px 32px; }
+
+    /* Project list */
+    .project-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:32px; }
+    .project-header h2 { font-size:24px; font-weight:700; }
+    .btn-add {
+      padding:10px 24px; background:#FF6B6B; color:white; border:none;
+      border-radius:8px; font-size:13px; font-weight:700; cursor:pointer; font-family:inherit;
+    }
+    .btn-add:hover { background:#E04040; }
+
+    .project-list { display:flex; flex-direction:column; gap:2px; }
+    .project-item {
+      display:flex; align-items:center; gap:16px; padding:20px 24px;
+      background:#2E2B24; border-radius:8px;
+    }
+    .project-item:hover { background:#3D3929; }
+    .pi-order { font-size:11px; color:rgba(240,235,225,.3); font-weight:700; min-width:24px; }
+    .pi-name { font-weight:700; font-size:15px; flex:1; }
+    .pi-img {
+      width:40px; height:40px; border-radius:6px; object-fit:cover; background:#1A1814;
+    }
+    .pi-tags { display:flex; gap:4px; }
+    .pi-tag {
+      font-size:9px; padding:3px 8px; background:rgba(240,235,225,.06);
+      color:rgba(240,235,225,.4); border-radius:100px; text-transform:uppercase; font-weight:700;
+    }
+    .pi-coral { background:rgba(255,107,107,.15); color:#FF6B6B; }
+    .pi-actions { display:flex; gap:8px; }
+    .pi-btn {
+      padding:6px 12px; background:transparent; border:1px solid rgba(240,235,225,.1);
+      border-radius:6px; color:rgba(240,235,225,.5); font-size:11px; cursor:pointer; font-family:inherit;
+    }
+    .pi-btn:hover { border-color:#FF6B6B; color:#FF6B6B; }
+    .pi-btn-del:hover { border-color:#ff4444; color:#ff4444; }
+
+    /* Modal form */
+    .modal-overlay {
+      display:none; position:fixed; inset:0; background:rgba(26,24,20,.8);
+      backdrop-filter:blur(4px); z-index:100; align-items:center; justify-content:center;
+    }
+    .modal-overlay.open { display:flex; }
+    .modal-form {
+      background:#2E2B24; border-radius:12px; padding:40px; width:520px; max-width:90vw;
+      max-height:90vh; overflow-y:auto;
+    }
+    .modal-form-header { display:flex; align-items:center; gap:12px; margin-bottom:24px; }
+    .modal-form-header h3 { font-size:20px; font-weight:700; flex:1; }
+    .modal-form-header .btn-back { font-size:11px; padding:6px 14px; }
+    .form-group { margin-bottom:20px; }
+    .form-group label { display:block; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:rgba(240,235,225,.4); margin-bottom:8px; }
+    .form-group input, .form-group textarea {
+      width:100%; padding:12px 16px; background:#1A1814; border:1px solid rgba(240,235,225,.1);
+      border-radius:8px; color:#F0EBE1; font-size:14px; font-family:inherit; outline:none; resize:vertical;
+    }
+    .form-group input:focus, .form-group textarea:focus { border-color:#FF6B6B; }
+    .form-group textarea { min-height:100px; }
+    .form-row { display:flex; gap:16px; }
+    .form-row .form-group { flex:1; }
+    .form-check { display:flex; align-items:center; gap:10px; margin-bottom:16px; }
+    .form-check input[type="checkbox"] { width:18px; height:18px; accent-color:#FF6B6B; }
+    .form-check label { font-size:13px; color:rgba(240,235,225,.6); margin:0; letter-spacing:0; text-transform:none; }
+    .form-actions { display:flex; gap:12px; margin-top:28px; }
+    .btn-save {
+      flex:1; padding:14px; background:#FF6B6B; color:white; border:none;
+      border-radius:8px; font-size:14px; font-weight:700; cursor:pointer; font-family:inherit;
+    }
+    .btn-save:hover { background:#E04040; }
+    .btn-cancel {
+      padding:14px 24px; background:transparent; color:rgba(240,235,225,.5);
+      border:1px solid rgba(240,235,225,.15); border-radius:8px; cursor:pointer; font-size:14px; font-family:inherit;
+    }
+    .btn-cancel:hover { color:#FF6B6B; border-color:#FF6B6B; }
+
+    /* Image upload */
+    .upload-zone {
+      border:2px dashed rgba(240,235,225,.15); border-radius:8px; padding:32px;
+      text-align:center; cursor:pointer; transition:border-color .3s;
+      position:relative;
+    }
+    .upload-zone:hover { border-color:#FF6B6B; }
+    .upload-zone input[type="file"] {
+      position:absolute; inset:0; opacity:0; cursor:pointer;
+    }
+    .upload-zone p { font-size:13px; color:rgba(240,235,225,.4); }
+    .upload-zone .upload-icon { font-size:24px; margin-bottom:8px; color:rgba(240,235,225,.3); }
+    .upload-preview {
+      margin-top:12px; display:none;
+    }
+    .upload-preview img {
+      max-width:100%; max-height:200px; border-radius:8px; object-fit:contain;
+    }
+    .upload-preview .upload-remove {
+      display:inline-block; margin-top:8px; font-size:11px; color:#FF6B6B;
+      cursor:pointer; text-decoration:underline;
+    }
+
+    .empty-state { text-align:center; padding:80px 0; color:rgba(240,235,225,.3); font-size:14px; }
+    .uploading { opacity:.5; pointer-events:none; }
+  </style>
+</head>
+<body>
+
+  <!-- LOGIN -->
+  <div class="login" id="loginScreen">
+    <div class="login-box">
+      <h1>Kyrro Admin</h1>
+      <p>Gestion des projets</p>
+      <input type="password" id="loginPass" placeholder="Mot de passe" autofocus>
+      <button onclick="tryLogin()">Se connecter</button>
+      <p class="login-error" id="loginError">Mot de passe incorrect</p>
+    </div>
+  </div>
+
+  <!-- ADMIN -->
+  <div class="admin" id="adminScreen">
+    <div class="admin-nav">
+      <h1>Kyrro Admin</h1>
+      <div class="admin-nav-right">
+        <a href="/" class="btn-back">← Retour au site</a>
+        <button onclick="logout()">Deconnexion</button>
+      </div>
+    </div>
+    <div class="admin-body">
+      <div class="project-header">
+        <h2>Projets</h2>
+        <button class="btn-add" onclick="openForm()">+ Ajouter un projet</button>
+      </div>
+      <div class="project-list" id="projectList">
+        <div class="empty-state">Chargement...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL FORM -->
+  <div class="modal-overlay" id="formModal">
+    <div class="modal-form">
+      <div class="modal-form-header">
+        <button class="btn-back" onclick="closeForm()">← Retour</button>
+        <h3 id="formTitle">Ajouter un projet</h3>
+      </div>
+      <input type="hidden" id="editId">
+      <input type="hidden" id="fSlug">
+      <input type="hidden" id="fCurrentImage">
+      <div class="form-group">
+        <label>Nom du projet</label>
+        <input type="text" id="fName" placeholder="Ex: Urban's">
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <textarea id="fDesc" placeholder="Description du projet..."></textarea>
+      </div>
+      <div class="form-group">
+        <label>Tags (separes par des virgules)</label>
+        <input type="text" id="fTags" placeholder="Ex: Outils internes, Automatisation, CRM">
+      </div>
+      <div class="form-group">
+        <label>Image du projet</label>
+        <div class="upload-zone" id="uploadZone">
+          <input type="file" id="fFile" accept="image/*" onchange="handleFileSelect(this)">
+          <div class="upload-icon">↑</div>
+          <p>Cliquer ou glisser une image</p>
+        </div>
+        <div class="upload-preview" id="uploadPreview">
+          <img id="previewImg" src="" alt="Preview">
+          <span class="upload-remove" onclick="removeImage()">Supprimer l'image</span>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Ordre d'affichage</label>
+          <input type="number" id="fOrder" placeholder="1" value="0">
+        </div>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" id="fCoral">
+        <label for="fCoral">Carte en coral (mise en avant)</label>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" id="fVisible" checked>
+        <label for="fVisible">Visible sur le site</label>
+      </div>
+      <div class="form-actions">
+        <button class="btn-cancel" onclick="closeForm()">Annuler</button>
+        <button class="btn-save" id="btnSave" onclick="saveProject()">Enregistrer</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const SUPABASE_URL = 'https://dflkepqmjjjrafxcebew.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_NkMnn8llVfH4mH6nMR7BVw_c-9YTzHw';
+    const STORAGE_BUCKET = 'project-images';
+    const ADMIN_PASS = 'kyrro2026';
+
+    let pendingFile = null;
+
+    // Auth
+    function tryLogin() {
+      const pass = document.getElementById('loginPass').value;
+      if (pass === ADMIN_PASS) {
+        sessionStorage.setItem('kyrro-admin', 'true');
+        showAdmin();
+      } else {
+        document.getElementById('loginError').style.display = 'block';
+      }
+    }
+    document.getElementById('loginPass').addEventListener('keydown', e => { if (e.key === 'Enter') tryLogin(); });
+
+    function logout() {
+      sessionStorage.removeItem('kyrro-admin');
+      location.reload();
+    }
+
+    function showAdmin() {
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('adminScreen').style.display = 'block';
+      loadProjects();
+    }
+
+    if (sessionStorage.getItem('kyrro-admin') === 'true') showAdmin();
+
+    // API
+    async function api(path, method = 'GET', body = null) {
+      const opts = {
+        method,
+        headers: {
+          'apikey': SUPABASE_KEY,
+          'Authorization': 'Bearer ' + SUPABASE_KEY,
+          'Content-Type': 'application/json',
+          'Prefer': method === 'POST' ? 'return=representation' : method === 'PATCH' ? 'return=representation' : undefined
+        }
+      };
+      if (body) opts.body = JSON.stringify(body);
+      const res = await fetch(SUPABASE_URL + '/rest/v1/' + path, opts);
+      if (!res.ok) throw new Error(await res.text());
+      const text = await res.text();
+      return text ? JSON.parse(text) : null;
+    }
+
+    // Upload image to Supabase Storage
+    async function uploadImage(file, slug) {
+      const ext = file.name.split('.').pop().toLowerCase();
+      const fileName = slug + '-' + Date.now() + '.' + ext;
+      const res = await fetch(
+        SUPABASE_URL + '/storage/v1/object/' + STORAGE_BUCKET + '/' + fileName,
+        {
+          method: 'POST',
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': 'Bearer ' + SUPABASE_KEY,
+            'Content-Type': file.type
+          },
+          body: file
+        }
+      );
+      if (!res.ok) throw new Error('Erreur upload: ' + await res.text());
+      return SUPABASE_URL + '/storage/v1/object/public/' + STORAGE_BUCKET + '/' + fileName;
+    }
+
+    // File handling
+    function handleFileSelect(input) {
+      const file = input.files[0];
+      if (!file) return;
+      pendingFile = file;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        document.getElementById('previewImg').src = e.target.result;
+        document.getElementById('uploadPreview').style.display = 'block';
+        document.getElementById('uploadZone').style.display = 'none';
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function removeImage() {
+      pendingFile = null;
+      document.getElementById('fCurrentImage').value = '';
+      document.getElementById('uploadPreview').style.display = 'none';
+      document.getElementById('uploadZone').style.display = 'block';
+      document.getElementById('fFile').value = '';
+    }
+
+    // Load
+    async function loadProjects() {
+      try {
+        const projects = await api('projects?order=display_order.asc,created_at.asc');
+        renderList(projects);
+      } catch (e) {
+        document.getElementById('projectList').innerHTML = '<div class="empty-state">Erreur de chargement: ' + e.message + '</div>';
+      }
+    }
+
+    function renderList(projects) {
+      const list = document.getElementById('projectList');
+      if (!projects.length) {
+        list.innerHTML = '<div class="empty-state">Aucun projet. Cliquez sur "+ Ajouter un projet" pour commencer.</div>';
+        return;
+      }
+      list.innerHTML = projects.map((p, i) => `
+        <div class="project-item">
+          <span class="pi-order">${String(i + 1).padStart(2, '0')}</span>
+          ${p.image_url ? '<img class="pi-img" src="' + p.image_url + '">' : ''}
+          <span class="pi-name">${p.name}</span>
+          <div class="pi-tags">
+            ${p.is_coral ? '<span class="pi-tag pi-coral">Coral</span>' : ''}
+            ${!p.visible ? '<span class="pi-tag">Masque</span>' : ''}
+            ${(p.tags || []).slice(0, 2).map(t => '<span class="pi-tag">' + t + '</span>').join('')}
+          </div>
+          <div class="pi-actions">
+            <button class="pi-btn" onclick='editProject(${JSON.stringify(p).replace(/'/g, "&#39;")})'>Modifier</button>
+            <button class="pi-btn pi-btn-del" onclick="deleteProject(${p.id})">Supprimer</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Form
+    function openForm() {
+      document.getElementById('formTitle').textContent = 'Ajouter un projet';
+      document.getElementById('editId').value = '';
+      document.getElementById('fSlug').value = '';
+      document.getElementById('fCurrentImage').value = '';
+      document.getElementById('fName').value = '';
+      document.getElementById('fDesc').value = '';
+      document.getElementById('fTags').value = '';
+      document.getElementById('fOrder').value = '0';
+      document.getElementById('fCoral').checked = false;
+      document.getElementById('fVisible').checked = true;
+      pendingFile = null;
+      document.getElementById('uploadPreview').style.display = 'none';
+      document.getElementById('uploadZone').style.display = 'block';
+      document.getElementById('fFile').value = '';
+      document.getElementById('formModal').classList.add('open');
+    }
+
+    function editProject(p) {
+      document.getElementById('formTitle').textContent = 'Modifier — ' + p.name;
+      document.getElementById('editId').value = p.id;
+      document.getElementById('fSlug').value = p.slug || '';
+      document.getElementById('fCurrentImage').value = p.image_url || '';
+      document.getElementById('fName').value = p.name || '';
+      document.getElementById('fDesc').value = p.description || '';
+      document.getElementById('fTags').value = (p.tags || []).join(', ');
+      document.getElementById('fOrder').value = p.display_order || 0;
+      document.getElementById('fCoral').checked = p.is_coral || false;
+      document.getElementById('fVisible').checked = p.visible !== false;
+      pendingFile = null;
+      document.getElementById('fFile').value = '';
+      if (p.image_url) {
+        document.getElementById('previewImg').src = p.image_url;
+        document.getElementById('uploadPreview').style.display = 'block';
+        document.getElementById('uploadZone').style.display = 'none';
+      } else {
+        document.getElementById('uploadPreview').style.display = 'none';
+        document.getElementById('uploadZone').style.display = 'block';
+      }
+      document.getElementById('formModal').classList.add('open');
+    }
+
+    function closeForm() {
+      document.getElementById('formModal').classList.remove('open');
+    }
+
+    async function saveProject() {
+      const btn = document.getElementById('btnSave');
+      const id = document.getElementById('editId').value;
+      const name = document.getElementById('fName').value.trim();
+      let slug = document.getElementById('fSlug').value.trim();
+
+      if (!slug) {
+        slug = name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/-+$/, '');
+      }
+
+      if (!name) return alert('Le nom est obligatoire.');
+
+      btn.classList.add('uploading');
+      btn.textContent = 'Enregistrement...';
+
+      try {
+        let imageUrl = document.getElementById('fCurrentImage').value || null;
+
+        // Upload new image if selected
+        if (pendingFile) {
+          imageUrl = await uploadImage(pendingFile, slug);
+        }
+
+        const data = {
+          name,
+          slug,
+          description: document.getElementById('fDesc').value.trim(),
+          tags: document.getElementById('fTags').value.split(',').map(t => t.trim()).filter(Boolean),
+          image_url: imageUrl,
+          display_order: parseInt(document.getElementById('fOrder').value) || 0,
+          is_coral: document.getElementById('fCoral').checked,
+          visible: document.getElementById('fVisible').checked
+        };
+
+        if (id) {
+          await api('projects?id=eq.' + id, 'PATCH', data);
+        } else {
+          await api('projects', 'POST', data);
+        }
+        closeForm();
+        loadProjects();
+      } catch (e) {
+        alert('Erreur: ' + e.message);
+      } finally {
+        btn.classList.remove('uploading');
+        btn.textContent = 'Enregistrer';
+      }
+    }
+
+    async function deleteProject(id) {
+      if (!confirm('Supprimer ce projet ?')) return;
+      try {
+        await api('projects?id=eq.' + id, 'DELETE');
+        loadProjects();
+      } catch (e) {
+        alert('Erreur: ' + e.message);
+      }
+    }
+
+    // Auto-slug on name input (only for new projects)
+    document.getElementById('fName').addEventListener('input', function() {
+      if (!document.getElementById('editId').value) {
+        document.getElementById('fSlug').value = this.value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/-+$/, '');
+      }
+    });
+  </script>
+</body>
+</html>

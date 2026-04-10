@@ -149,6 +149,82 @@
   }
 
   /* ─────────────────────────────────────
+     SUPABASE — Fetch projects
+  ───────────────────────────────────── */
+  const SUPABASE_URL = 'https://dflkepqmjjjrafxcebew.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_NkMnn8llVfH4mH6nMR7BVw_c-9YTzHw';
+
+  async function loadProjects() {
+    const track = document.querySelector('.real-track');
+    if (!track) return;
+
+    try {
+      const res = await fetch(
+        SUPABASE_URL + '/rest/v1/projects?visible=eq.true&order=display_order.asc,created_at.asc',
+        { headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY } }
+      );
+      if (!res.ok) return;
+      const projects = await res.json();
+      if (!projects.length) return;
+
+      // Vider le carousel statique
+      track.innerHTML = '';
+
+      // Generer les cartes dynamiques
+      projects.forEach((p, i) => {
+        const card = document.createElement('div');
+        card.className = 'rcard rv';
+        card.dataset.project = p.slug;
+        if (i > 0 && i < 6) card.classList.add('d' + i);
+
+        const isCoral = p.is_coral;
+        if (isCoral) card.dataset.coral = 'true';
+        if (p.is_wide) card.style.width = '560px';
+
+        card.innerHTML = `
+          <span class="rcard-num">${String(i + 1).padStart(2, '0')}</span>
+          <h3 class="rcard-name">${p.name}</h3>
+          <span class="rcard-cta">Voir le projet →</span>
+        `;
+        track.appendChild(card);
+      });
+
+      // Appliquer les styles coral dynamiquement
+      track.querySelectorAll('[data-coral="true"]').forEach(card => {
+        card.style.background = 'var(--coral)';
+        card.querySelector('.rcard-num').style.color = 'rgba(255,255,255,.1)';
+        card.querySelector('.rcard-name').style.color = 'white';
+        card.querySelector('.rcard-cta').style.color = 'white';
+      });
+
+      // Relancer le reveal sur les nouvelles cartes
+      const revealObs = new IntersectionObserver(
+        (entries) => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); revealObs.unobserve(e.target); } }),
+        { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+      );
+      track.querySelectorAll('.rv').forEach(el => revealObs.observe(el));
+
+      // Stocker les projets pour le modal
+      window._projects = {};
+      projects.forEach((p, i) => {
+        window._projects[p.slug] = {
+          num: String(i + 1).padStart(2, '0'),
+          name: p.name,
+          desc: p.description || '',
+          tags: p.tags || [],
+          image: p.image_url || ''
+        };
+      });
+
+      // Init modal click handlers
+      initModal();
+
+    } catch (e) {
+      // En cas d'erreur, le carousel statique reste en place
+    }
+  }
+
+  /* ─────────────────────────────────────
      PROJECT MODAL
   ───────────────────────────────────── */
   function initModal() {
@@ -161,28 +237,22 @@
     const numEl = modal.querySelector('.modal-num');
     const descEl = modal.querySelector('.modal-desc');
     const tagsEl = modal.querySelector('.modal-tags');
-
-    // Contenu des projets (a completer)
-    const projects = {
-      'urbans':     { num: '01', desc: 'Accompagnement du groupe Urban\'s dans la structuration de leurs outils internes et l\'automatisation de leurs process opérationnels.', tags: ['Outils internes', 'Automatisation', 'CRM'] },
-      'mushin':     { num: '02', desc: 'Mise en place de workflows automatisés et intégration d\'outils IA pour optimiser la gestion de contenu et la collaboration.', tags: ['Automatisation', 'IA appliquée', 'Workflows'] },
-      'coallis':    { num: '03', desc: 'Conception d\'un outil sur-mesure pour centraliser la gestion de projets collaboratifs et automatiser le suivi client.', tags: ['Outil interne', 'Suivi client', 'Automatisation'] },
-      'cite-biere': { num: '04', desc: 'Refonte des process digitaux et création d\'outils internes pour piloter l\'activité au quotidien.', tags: ['Process', 'Outils internes', 'Design'] },
-      'agiras':     { num: '05', desc: 'Automatisation des tâches administratives et intégration d\'IA pour le traitement documentaire.', tags: ['IA appliquée', 'Documents', 'Automatisation'] },
-      'ot-nord':    { num: '06', desc: 'Accompagnement dans la digitalisation des process et la mise en place d\'outils de pilotage.', tags: ['Audit', 'Outils internes', 'Process'] },
-      'meelo':      { num: '07', desc: 'Développement d\'outils internes sur-mesure et automatisation des workflows métier.', tags: ['Outils internes', 'Workflows', 'Automatisation'] },
-      'la-maizon':  { num: '08', desc: 'Création d\'un écosystème digital complet : site vitrine, outils internes et automatisations.', tags: ['Site vitrine', 'Outils internes', 'Automatisation'] },
-      'optia':      { num: '09', desc: 'Intégration d\'IA dans les process existants pour automatiser l\'analyse et la génération de contenus.', tags: ['IA appliquée', 'Automatisation', 'Contenus'] }
-    };
+    const imageEl = modal.querySelector('.modal-image-placeholder');
 
     function openModal(projectId) {
-      const data = projects[projectId];
+      const data = window._projects && window._projects[projectId];
       if (!data) return;
 
       numEl.textContent = data.num;
-      titleEl.textContent = document.querySelector(`[data-project="${projectId}"] .rcard-name`).textContent;
+      titleEl.textContent = data.name;
       descEl.textContent = data.desc;
       tagsEl.innerHTML = data.tags.map(t => `<span>${t}</span>`).join('');
+
+      if (data.image && imageEl) {
+        imageEl.style.backgroundImage = `url(${data.image})`;
+        imageEl.style.backgroundSize = 'cover';
+        imageEl.style.backgroundPosition = 'center';
+      }
 
       modal.classList.add('open');
       document.body.style.overflow = 'hidden';
@@ -193,12 +263,10 @@
       document.body.style.overflow = '';
     }
 
-    // Ouvrir au clic sur une carte
     document.querySelectorAll('.rcard[data-project]').forEach(card => {
       card.addEventListener('click', () => openModal(card.dataset.project));
     });
 
-    // Fermer
     closeBtn.addEventListener('click', closeModal);
     backdrop.addEventListener('click', closeModal);
     document.addEventListener('keydown', (e) => {
@@ -207,6 +275,57 @@
   }
 
 /* ─────────────────────────────────────
+     BRICK PARALLAX
+  ───────────────────────────────────── */
+  function initBrickParallax() {
+    const hero = document.querySelector('.hero');
+    const nav = document.getElementById('nav');
+    const brick = document.querySelector('.hero-brick');
+    if (!hero || !brick) return;
+
+    const MAX_ROT = 18;
+    const MAX_TRANSLATE = 30;
+    let inside = false;
+
+    function handleMove(e) {
+      const rect = hero.getBoundingClientRect();
+      // Only apply parallax if cursor is within hero bounds vertically
+      if (e.clientY < rect.top || e.clientY > rect.bottom) return;
+
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+      const rotY = x * MAX_ROT;
+      const rotX = -y * MAX_ROT;
+      const tx = x * MAX_TRANSLATE;
+      const ty = y * MAX_TRANSLATE;
+
+      brick.style.transform = `perspective(1000px) translate(${tx}px, ${ty}px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.03)`;
+      inside = true;
+    }
+
+    function handleLeave(e) {
+      // Reset only if truly leaving hero area (not when moving to nav overlap)
+      const rect = hero.getBoundingClientRect();
+      if (e.clientY < rect.top || e.clientY > rect.bottom) {
+        brick.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+        inside = false;
+      }
+    }
+
+    hero.addEventListener('mousemove', handleMove, { passive: true });
+    if (nav) nav.addEventListener('mousemove', handleMove, { passive: true });
+
+    document.addEventListener('mousemove', (e) => {
+      const rect = hero.getBoundingClientRect();
+      if (inside && (e.clientY < rect.top || e.clientY > rect.bottom)) {
+        brick.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+        inside = false;
+      }
+    }, { passive: true });
+  }
+
+  /* ─────────────────────────────────────
      WAVE ANIMATION
   ───────────────────────────────────── */
   function initWaves() {
@@ -236,7 +355,7 @@
     let time = 0;
 
     function animateWaves() {
-      time += 0.015;
+      time += 0.006;
 
       waveData.forEach((wave) => {
         let newD = wave.originalD;
@@ -269,7 +388,8 @@
     initReveal();
     initHighlights();
     initCountUp();
-    initModal();
+    loadProjects();
+    initBrickParallax();
     initWaves();
   }
 
